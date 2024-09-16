@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Dynamic Table</h1>
+    <h4>Welcome {{fname}} {{lname}}</h4>
+    <a href="/login">Login Now</a>
+    <button onclick="generateTable()">Generate Table</button>
+    <table id="myTable"></table>
+    
+    <script>
+        // Generate random data
+        function generateData() {
+            const data = [];
+            for (let i = 0; i < 10; i++) {
+                data.push({
+                    id: i + 1,
+                    name: `Name ${i + 1}`,
+                    email: `email${i + 1}@example.com`,
+                    phone: `123-456-789${i + 1}`,
+                    address: `Address ${i + 1}`
+                });
+            }
+            return data;
+        }
+        
+        // Generate table
+        function generateTable() {
+            const data = generateData();
+            const table = document.getElementById('myTable');
+            table.innerHTML = '';
+            
+            // Create table header
+            const thead = document.createElement('thead');
+            const tr = document.createElement('tr');
+            const th1 = document.createElement('th');
+            th1.textContent = 'ID';
+            const th2 = document.createElement('th');
+            th2.textContent = 'Name';
+            const th3 = document.createElement('th');
+            th3.textContent = 'Email';
+            const th4 = document.createElement('th');
+            th4.textContent = 'Phone';
+            const th5 = document.createElement('th');
+            th5.textContent = 'Address';
+            tr.appendChild(th1);
+            tr.appendChild(th2);
+            tr.appendChild(th3);
+            tr.appendChild(th4);
+            tr.appendChild(th5);
+            thead.appendChild(tr);
+            table.appendChild(thead);
+            
+            // Create table body
+            const tbody = document.createElement('tbody');
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                const td1 = document.createElement('td');
+                td1.textContent = item.id;
+                const td2 = document.createElement('td');
+                td2.textContent = item.name;
+                const td3 = document.createElement('td');
+                td3.textContent = item.email;
+                const td4 = document.createElement('td');
+                td4.textContent = item.phone;
+                const td5 = document.createElement('td');
+                td5.textContent = item.address;
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                tr.appendChild(td5);
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+        }
+        
+        
+    </script>
+</body>
+</html>
